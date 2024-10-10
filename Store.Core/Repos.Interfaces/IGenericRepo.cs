@@ -1,4 +1,5 @@
 ﻿using Store.Core.Entites;
+using Store.Core.Specifcations;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -12,10 +13,17 @@ namespace Store.Core.Repos.Interfaces
     {
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<TEntity> GetAsync(TKey id);
+
+        Task<IEnumerable<TEntity>> GetAllWithSpecAsync(ISpecifcations<TEntity, TKey> spec);
+        Task<TEntity> GetWithSpecAsync(ISpecifcations<TEntity, TKey> spec);
+
         Task AddAsync(TEntity entity);
+
+        Task<int>GetCountAsync(ISpecifcations<TEntity,TKey> spec);
 
         void Update(TEntity entity);
         void Delete(TEntity entity);
+
 
     }
 }
